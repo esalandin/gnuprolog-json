@@ -28,6 +28,10 @@
 %% after the final closing "}" character. For example, a LF character
 %% left on a new line of its own.
 %%--------------------------------------------------------------------
+json_decode_string(String, JSON) :-
+	list(String),
+	phrase(json_object(JSON), String, _),
+
 json_decode(String, JSON) :-
 	list(String),
 	phrase(json_object(JSON), String, _).
@@ -71,11 +75,19 @@ json_object(JSON) -->
 	(
 	 "{", json_skipws, "}", {JSON = obj([])}
 	;
+	 "[", json_skipws, "]", {JSON = array([])}
+	;
 	 "{", json_skipws,
 	 json_members([], Content),
 	 json_skipws, "}",
 	 !,
 	 {JSON = obj(Content)}
+	 ;
+	 "[", json_skipws,
+	 json_elements([], Elements), 
+	 json_skipws, "]",
+	 !,
+	 {JSON = array(Elements)}
 	).
 
 
