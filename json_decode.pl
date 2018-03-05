@@ -81,7 +81,7 @@ json_object(JSON) -->
 	(
 	 "{", json_skipws, "}", {JSON = obj([])}
 	;
-	 "[", json_skipws, "]", {JSON = array([])}
+	 "[", json_skipws, "]", {JSON = []}
 	;
 	 "{", json_skipws,
 	 json_members([], Content),
@@ -93,7 +93,7 @@ json_object(JSON) -->
 	 json_elements([], Elements), 
 	 json_skipws, "]",
 	 !,
-	 {JSON = array(Elements)}
+	 {JSON = Elements}
 	).
 
 
