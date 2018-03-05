@@ -167,8 +167,8 @@ json_elements(Acc, Elements) -->
 	  %% Dangling comma, take what we have.
 	  {reverse(Acc, Elements)}
 	 )
-	)
-	.
+	).
+
 
 %%--------------------------------------------------------------------
 %% json_members//2.
