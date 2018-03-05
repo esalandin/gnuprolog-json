@@ -70,6 +70,12 @@
 %%
 %%====================================================================
 
+%%====================================================================
+%% Note:
+%% flatten(List1, List2) succeeds iff List2 is the non-nested list of List1.
+%% missing in gnu prolog documentation
+%%====================================================================
+
 :- include(mygputils).
 
 
@@ -86,7 +92,7 @@
 %% effort to preserve it.
 %%
 %%--------------------------------------------------------------------
-%% json_encode(obj(X))/2 ENFORCES the top level {} requirement
+%% json_encode(obj(X))/2
 %%--------------------------------------------------------------------
 json_encode(obj([]), "{}").
 
