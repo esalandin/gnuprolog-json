@@ -30,17 +30,17 @@
 %%--------------------------------------------------------------------
 json_decode_string(String, JSON) :-
 	list(String),
-	phrase(json_object(JSON), String, _).
+	phrase(json_object(JSON), String).
 	
 json_decode_file(Filename, JSON) :-
 	open(Filename, read, F),
 	json_loadfile(F, [], Buffer),
-	phrase(json_object(JSON), Buffer, _),
+	phrase(json_object(JSON), Buffer,_Rem),
 	close(F).
 
 json_decode(String, JSON) :-
 	list(String),
-	phrase(json_object(JSON), String, _), !.
+	phrase(json_object(JSON), String), !.
 
 json_decode(Filename, JSON) :-
 	open(Filename, read, F),
